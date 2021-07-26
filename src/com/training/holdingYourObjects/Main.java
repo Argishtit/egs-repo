@@ -3,6 +3,12 @@ package com.training.holdingYourObjects;
 import java.util.*;
 
 public class Main {
+
+//    public static void commandEater(Queue<Command> qc) {
+//        while(qc.peek() != null)                              Exercise 27
+//            qc.poll().operation();
+//    }
+
     public static void main(String[] args) {
 
 //        List<Gerbil> groupOfGerbil = new ArrayList<>();
@@ -150,6 +156,111 @@ public class Main {
 //
 //        System.out.println(count);
 
+//        Map<String, Gerbil> gerbils = new HashMap<String, Gerbil>();
+//        gerbils.put("Fuzzy", new Gerbil(0));
+//        gerbils.put("Spot", new Gerbil(1));
+//        gerbils.put("Speedy", new Gerbil(2));
+//        gerbils.put("Dopey", new Gerbil(3));                              Exercise 17
+//        gerbils.put("Sleepy", new Gerbil(4));
+//        gerbils.put("Happy", new Gerbil(5));
+//        Iterator<String> it = gerbils.keySet().iterator();
+//        while(it.hasNext()) {
+//            String s = it.next();
+//            System.out.print(s + ": ");
+//            gerbils.get(s).hop();
 
+//        Map<String, Gerbil> gerbils = new HashMap<String, Gerbil>();
+//        gerbils.put("Fuzzy", new Gerbil(0));
+//        gerbils.put("Spot", new Gerbil(1));
+//        gerbils.put("Speedy", new Gerbil(2));
+//        gerbils.put("Dopey", new Gerbil(3));
+//        gerbils.put("Sleepy", new Gerbil(4));
+//        gerbils.put("Happy", new Gerbil(5));
+//        gerbils.put("Funny", new Gerbil(6));
+//        gerbils.put("Silly", new Gerbil(7));
+//        gerbils.put("Goofy", new Gerbil(8));
+//        gerbils.put("Wowee", new Gerbil(9));
+//        System.out.println(gerbils);
+//        System.out.println();
+//        Set<String> sortedKeys =
+//                new TreeSet<String>(gerbils.keySet());
+//        System.out.println(sortedKeys);
+//        System.out.println();                                             Exercise 18
+//        Map<String, Gerbil> sortedGerbils =
+//                new LinkedHashMap<String, Gerbil>();
+//        for(String s : sortedKeys) {
+//            System.out.print("Adding " + s + ", ");
+//            sortedGerbils.put(s, gerbils.get(s));
+//        }
+//        System.out.println();
+//        System.out.println();
+//        System.out.println(sortedGerbils);
+//        System.out.println();
+//        // or, just:
+//        Map<String, Gerbil> sortedGerbils2 =
+//                new TreeMap<String, Gerbil>(gerbils);
+//        System.out.println(sortedGerbils2);
+
+//        Map<String, Gerbil> gerbils = new HashMap<String, Gerbil>();
+//        gerbils.put("Fuzzy", new Gerbil(0));
+//        gerbils.put("Spot", new Gerbil(1));
+//        gerbils.put("Speedy", new Gerbil(2));
+//        gerbils.put("Dopey", new Gerbil(3));
+//        gerbils.put("Sleepy", new Gerbil(4));
+//        gerbils.put("Happy", new Gerbil(5));
+//        gerbils.put("Funny", new Gerbil(6));
+//        gerbils.put("Silly", new Gerbil(7));
+//        gerbils.put("Goofy", new Gerbil(8));
+//        gerbils.put("Wowee", new Gerbil(9));
+//        System.out.println(gerbils);
+//        System.out.println();
+//        Set<String> hashedKeys =
+//                new HashSet<String>(gerbils.keySet());
+//        System.out.println("HashSet: " + hashedKeys);
+//        System.out.println();
+//        Map<String, Gerbil> hashedGerbils =
+//                new LinkedHashMap<String, Gerbil>();
+//        for(String s : hashedKeys) {
+//            System.out.print("Adding " + s + ", ");
+//            hashedGerbils.put(s, gerbils.get(s));
+//        }
+//        System.out.println();
+//        System.out.println();
+//        System.out.println("From HashSet: " + hashedGerbils);
+//                                                                              Exercise 19
+//        System.out.println();
+//        Set<String> linkedHashedKeys =
+//                new LinkedHashSet<String>(gerbils.keySet());
+//        System.out.println("LinkedHashSet: " + linkedHashedKeys);
+//        System.out.println();
+//        Map<String, Gerbil> linkedHashedGerbils =
+//                new LinkedHashMap<String, Gerbil>();
+//        for(String s : linkedHashedKeys) {
+//            System.out.print("Adding " + s + ", ");
+//            linkedHashedGerbils.put(s, gerbils.get(s));
+//        }
+//        System.out.println();
+//        System.out.println();
+//        System.out.println("From LinkedHashSet: "
+//                + linkedHashedGerbils);
+
+//            Build b = new Build(); // Exercise 27,
+//                                   // please also uncomment the lines 7-10, to make the code compile
+//           commandEater(b.makeQ());
+
+//        Random rand = new Random();
+//        PriorityQueue<Double> d = new PriorityQueue<Double>();
+//        for(int i = 0; i < 10; i++)                                           Exercise 28
+//            d.offer(rand.nextDouble() * i);
+//        while(d.peek() != null)
+//            System.out.print(d.poll() + " ");
+
+//        PriorityQueue<Simple> s = new PriorityQueue<Simple>();
+//        // OK to add one Simple:
+//        s.offer(new Simple());                                                Exercise 29
+//        // but no more allowed; get runtime exception:
+//        // Simple cannot be cast to Comparable:
+//        s.offer(new Simple());
     }
 }
+

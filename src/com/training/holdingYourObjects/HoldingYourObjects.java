@@ -138,7 +138,7 @@ class JustForTheMethod {
 
     public static void stepThrough(Collection c) {
         Iterator it = c.iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             System.out.println(it.next().toString());
         }
     }
@@ -173,11 +173,26 @@ class JustForTheMethod {
 
 class Stack<T> {
     private LinkedList<T> storage = new LinkedList<T>();
-    public void push(T v) { storage.addFirst(v); }
-    public T peek() { return storage.getFirst(); }
-    public T pop() { return storage.removeFirst(); }
-    public boolean empty() { return storage.isEmpty(); }
-    public String toString() { return storage.toString(); }
+
+    public void push(T v) {
+        storage.addFirst(v);
+    }
+
+    public T peek() {
+        return storage.getFirst();
+    }
+
+    public T pop() {
+        return storage.removeFirst();
+    }
+
+    public boolean empty() {
+        return storage.isEmpty();
+    }
+
+    public String toString() {
+        return storage.toString();
+    }
 }
 
 /*
@@ -189,3 +204,79 @@ class Stack<T> {
 
 // solution is written in Main.java
 
+/*
+ * Exercise:     17
+ * Description:  Take the Gerbil class in Exercise 1 and put it into a Map instead,
+ *               associating each Gerbil’s name (e.g. "Fuzzy" or "Spot") as a String (the key) for each
+ *               Gerbil (the value) you put in the table. Get an Iterator for the keySet( ) and use it to move
+ *               through the Map, looking up the Gerbil for each key and printing out the key and telling the
+ *               Gerbil to hop( ).
+ */
+
+// solution is written in Main.java
+
+/*
+ * Exercise:     18
+ * Description:  Fill a HashMap with key-value pairs. Print the results to show
+ *               ordering by hash code. Extract the pairs, sort by key, and place the result into a
+ *               LinkedHashMap. Show that the insertion order is maintained.
+ *
+ */
+
+// solution is written in Main.java
+
+/*
+ * Exercise:     19
+ * Description:  Repeat the previous exercise with a HashSet and LinkedHashSet.
+ *
+ */
+
+// solution is written in Main.java
+
+/*
+ * Exercise:     27
+ * Description: Write a class called Command that contains a String and has a
+ *              method operation( ) that displays the String. Write a second class with a method that fills
+ *              a Queue with Command objects and returns it. Pass the filled Queue to a method in a
+ *              third class that consumes the objects in the Queue and calls their operation( ) methods.
+ *
+ */
+
+class Command {
+    String s;
+
+    Command(String s) {
+        this.s = s;
+    }
+
+    void operation() {
+        System.out.print(s);
+    }
+}
+
+class Build {
+    Queue<Command> makeQ() {
+        Queue<Command> q = new LinkedList<Command>();
+        for (int i = 0; i < 10; i++)
+            q.offer(new Command(i + " "));
+        return q;
+    }
+}
+
+/*
+ * Exercise:    28
+ * Description: Fill a PriorityQueue (using offer( )) with Double values created
+ *              using java.util.Random, then remove the elements using poll( ) and display them.
+ */
+
+// solution is written in Main.java
+
+
+/*
+ * Exercise:    29
+ * Description: Create a simple class that inherits from Object and contains no
+ *              members, and show that you cannot successfully add multiple elements of that class to a
+ *              PriorityQueue. This issue will be fully explained in the Containers in Depth chapter.
+ */
+
+// solution is written in Main.java

@@ -41,7 +41,32 @@ class Format{
 }
 
 /*
- * Exercise: 6
+ * Exercise: 10
+ * Description: For the phrase "Java now has regular expressions" evaluate whether the
+ *              following expressions will find a match:
+ *              ^Java
+ *              \Breg.*
+ *              n.w\s+h(a|i)s
+ *              s?
+ *              s*
+ *              s+
+ *              s{4}
+ *              S{1}.
+ *              s{0,3}
+ */
+
+// solution added in Main.java
+
+/*
+ * Exercise:    12
+ * Description: Modify Groups.java to count all of the unique words that do not start
+ *              with a capital letter.
+ */
+
+// solution added in Main.java
+
+/*
+ * Exercise: 20
  * Description: Create a class that contains int, long, float and double and String
  *              fields. Create a constructor for this class that takes a single String argument, and scans that
  *              string into the various fields. Add a toString( ) method and demonstrate that your class

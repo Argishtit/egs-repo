@@ -1,5 +1,8 @@
 package com.training.typeInformation;
 
+import java.lang.reflect.*;
+
+
 public class Main {
     public static void main(String[] args) {
 //        System.out.println("inside main");
@@ -20,6 +23,7 @@ public class Main {
 //                c.getClass().getSuperclass());
 //        System.out.println("char[] c instanceof Object: " +
 //                (c instanceof Object));
+
 
     }
 }

@@ -1,8 +1,11 @@
 package com.training.typeInformation;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.lang.reflect.*;
+import java.lang.annotation.*;
 
 /**
  * Description: This file is designed for covering the most part of the exercises from the book ThinkingInJava4e.
@@ -11,13 +14,7 @@ import java.util.List;
  * @author Argishti_Tigranyan
  */
 
-/*
-* Just a code test.
-*
- */
-
-public class TypeInformation {
-}
+// just a test
 
 class Candy {
     static { System.out.println("Loading Candy"); }
@@ -40,9 +37,9 @@ class Cookie {
  *
  */
 
-//interface HasBatteries {}
-//interface Waterproof {}
-//interface Shoots {}
+interface HasBatteries {}
+interface Waterproof {}
+interface Shoots {}
 //class Toy {
 //
 //    //Toy() {}
@@ -92,53 +89,53 @@ class Cookie {
  *                 is detected and displayed properly.
  */
 
-interface HasBatteries {}
-interface Waterproof {}
-interface Shoots {}
-interface Bio{}
-
-class Toy {
-
-    Toy() {}
-    Toy(int i) {}
-}
-class FancyToy extends Toy
-        implements HasBatteries, Waterproof, Shoots, Bio {
-    FancyToy() { super(1); }
-}
-class ToyTest {
-    static void printInfo(Class cc) {
-        System.out.println("Class name: " + cc.getName() +
-                " is interface? [" + cc.isInterface() + "]");
-        System.out.println("Simple name: " + cc.getSimpleName());
-        System.out.println("Canonical name : " + cc.getCanonicalName());
-    }
-    public static void main(String[] args) {
-        Class c = null;
-        try {
-            c = Class.forName("com.training.typeInformation.FancyToy");
-        } catch(ClassNotFoundException e) {
-            System.out.println("Can’t find FancyToy");
-            System.exit(1);
-        }
-        printInfo(c);
-        for(Class face : c.getInterfaces())
-            printInfo(face);
-        Class up = c.getSuperclass();
-        Object obj = null;
-        try {
-            // Requires default constructor:
-            obj = up.newInstance();
-        } catch(InstantiationException e) {
-            System.out.println("Cannot instantiate");
-            System.exit(1);
-        } catch(IllegalAccessException e) {
-            System.out.println("Cannot access");
-            System.exit(1);
-        }
-        printInfo(obj.getClass());
-    }
-}
+//interface HasBatteries {}
+//interface Waterproof {}
+//interface Shoots {}
+//interface Bio{}
+//
+//class Toy {
+//
+//    Toy() {}
+//    Toy(int i) {}
+//}
+//class FancyToy extends Toy
+//        implements HasBatteries, Waterproof, Shoots, Bio {
+//    FancyToy() { super(1); }
+//}
+//class ToyTest {
+//    static void printInfo(Class cc) {
+//        System.out.println("Class name: " + cc.getName() +
+//                " is interface? [" + cc.isInterface() + "]");
+//        System.out.println("Simple name: " + cc.getSimpleName());
+//        System.out.println("Canonical name : " + cc.getCanonicalName());
+//    }
+//    public static void main(String[] args) {
+//        Class c = null;
+//        try {
+//            c = Class.forName("com.training.typeInformation.FancyToy");
+//        } catch(ClassNotFoundException e) {
+//            System.out.println("Can’t find FancyToy");
+//            System.exit(1);
+//        }
+//        printInfo(c);
+//        for(Class face : c.getInterfaces())
+//            printInfo(face);
+//        Class up = c.getSuperclass();
+//        Object obj = null;
+//        try {
+//            // Requires default constructor:
+//            obj = up.newInstance();
+//        } catch(InstantiationException e) {
+//            System.out.println("Cannot instantiate");
+//            System.exit(1);
+//        } catch(IllegalAccessException e) {
+//            System.out.println("Cannot access");
+//            System.exit(1);
+//        }
+//        printInfo(obj.getClass());
+//    }
+//}
 
 /*
  * Exercise:      3
@@ -426,7 +423,223 @@ class HierarchyTest{
 // solution is written in Main.java
 
 /*
- * Exercise:      10
- * Description:   Write a program to determine whether an array of char is a primitive
- *                type or a true Object.
+ * Exercise:      19
+ * Description:   In ToyTest.java, use reflection to create a Toy object using the non-default constructor.
  */
+
+class Toy {
+     Toy() {
+        System.out.println("Creating Toy() object");
+    }
+    Toy(int i) {
+        System.out.println("Creating Toy(" + i + ") object");
+    }
+}
+
+class FancyToy extends Toy
+        implements HasBatteries, Waterproof, Shoots {
+    FancyToy() { super(1); }
+}
+
+ class ToyTest {
+    public static void main(String[] args) {
+        // get appropriate constructor and create new instance:
+        try {
+            Toy.class.getDeclaredConstructor(int.class).newInstance(5);
+            // catch four exceptions:
+        } catch(NoSuchMethodException e) {
+            System.out.println("No such method: " + e);
+        } catch(InstantiationException e) {
+            System.out.println("Unable make Toy: " + e);
+        } catch(IllegalAccessException e) {
+            System.out.println("Unable access: " + e);
+        } catch(InvocationTargetException e) {
+            System.out.println("Target invocation problem: " + e);
+        }
+    }
+}
+
+/*
+ * Exercise:      20
+ * Description:   Look up the interface for java.lang.Class in the JDK documentation
+ *                from http://java.sun.com. Write a program that takes the name of a class as a command-line
+ *                argument, then uses the Class methods to dump all the information available for that class.
+ *                Test your program with a standard library class and a class you create.
+ */
+
+class ClassInfo {
+    public static void main(String[] args) {
+        Class<?> c = null;
+        try {
+            c = Class.forName("java.lang.String");
+        } catch(ClassNotFoundException e) {
+            System.out.println("No such class: " + e);
+        }
+        System.out.println("c: " + c);
+        System.out.println("c.getAnnotations(): ");
+        if(c.getAnnotations().length == 0) System.out.println("none");
+        for(Annotation a : c.getAnnotations())
+            System.out.println(a);
+        System.out.println("c.getCanonicalName(): " + c.getCanonicalName());
+        System.out.println("c.getClasses(): ");
+        if(c.getClasses().length == 0) System.out.println("none");
+        for(Class cl : c.getClasses())
+            System.out.println(cl);
+        System.out.println("c.getClassLoader(): " + c.getClassLoader());
+        System.out.println("c.getConstructors(): ");
+        if(c.getConstructors().length == 0) System.out.println("none");
+        for(Constructor ctor : c.getConstructors())
+            System.out.println(ctor);
+        System.out.println("c.getDeclaredAnnotations(): ");
+        if(c.getDeclaredAnnotations().length == 0) System.out.println("none");
+        for(Annotation a : c.getDeclaredAnnotations())
+            System.out.println(a);
+        System.out.println("c.getDeclaredClasses(): ");
+        if(c.getDeclaredClasses().length == 0) System.out.println("none");
+        for(Class cl : c.getDeclaredClasses())
+            System.out.println(cl);
+        System.out.println("c.getDeclaredConstructors(): ");
+        if(c.getDeclaredConstructors().length == 0) System.out.println("none");
+        for(Constructor ctor : c.getDeclaredConstructors())
+            System.out.println(ctor);
+        System.out.println("c.getDeclaredFields(): ");
+        if(c.getDeclaredFields().length == 0) System.out.println("none");
+        for(Field f : c.getDeclaredFields())
+            System.out.println(f);
+        System.out.println("c.getDeclaredMethods(): ");
+        if(c.getDeclaredMethods().length == 0) System.out.println("none");
+        for(Method m : c.getDeclaredMethods())
+            System.out.println(m);
+        System.out.println("c.getDeclaringClass(): " + c.getDeclaringClass());
+        System.out.println("c.getEnclosingConstructor(): " + c.getEnclosingConstructor());
+        System.out.println("c.getEnclosingMethod(): " + c.getEnclosingMethod());
+        System.out.println("c.getEnumConstants(): " + c.getEnumConstants());
+        System.out.println("c.getDeclaredFields(): ");
+        if(c.getFields().length == 0) System.out.println("none");
+        for(Field f : c.getFields())
+            System.out.println(f);
+        System.out.println("c.getGenericInterfaces(): ");
+        if(c.getGenericInterfaces().length == 0) System.out.println("none");
+        for(Type t : c.getGenericInterfaces())
+            System.out.println(t);
+        System.out.println("c.getGenericSuperclass(): " + c.getGenericSuperclass());
+        System.out.println("c.getInterfaces(): ");
+        if(c.getInterfaces().length == 0) System.out.println("none");
+        for(Class i : c.getInterfaces())
+            System.out.println(i);
+        System.out.println("c.getMethods(): ");
+        if(c.getMethods().length == 0) System.out.println("none");
+        for(Method m : c.getMethods())
+            System.out.println(m);
+        System.out.println("c.getModifiers(): " + c.getModifiers());
+        System.out.println("c.getName(): " + c.getName());
+        System.out.println("c.getPackage(): " + c.getPackage());
+        System.out.println("c.getProtectionDomain(): " + c.getProtectionDomain());
+        System.out.print("c.getSigners(): ");
+        if(c.getSigners() == null)
+            System.out.println(c.getSigners());
+        if(c.getSigners() != null) {
+            System.out.println();
+            if(c.getSigners().length == 0) System.out.println("none");
+            if(c.getSigners().length > 0) {
+                for(Object s : c.getSigners())
+                    System.out.println(s);
+            }
+        }
+        System.out.println("c.getSimpleName(): " + c.getSimpleName());
+        System.out.println("c.getSuperclass(): " + c.getSuperclass());
+        System.out.println("c.getTypeParameters(): " + c.getTypeParameters());
+        System.out.println("c.isAnnotation(): " + c.isAnnotation());
+        System.out.println("c.isAnnotationPresent(Documented.class): " + c.isAnnotationPresent(Documented.class));
+        System.out.println("c.isAnonymousClass(): " + c.isAnonymousClass());
+        System.out.println("c.isArray(): " + c.isArray());
+        System.out.println("c.isAssignableFrom(ClassInfo.class): " + c.isAssignableFrom(ClassInfo.class));
+        System.out.println("c.isAssignableFrom(Object.class): " + c.isAssignableFrom(Object.class));
+        System.out.println("c.isEnum(): " + c.isEnum());
+        System.out.println("c.isInstance(Object.class): " + c.isInstance(Object.class));
+        System.out.println("c.isInterface(): " + c.isInterface());
+        System.out.println("c.isLocalClass(): " + c.isLocalClass());
+        System.out.println("c.isMemberClass(): " + c.isMemberClass());
+        System.out.println("c.isPrimitive(): " + c.isPrimitive());
+        System.out.println("c.isSynthetic(): " + c.isSynthetic());
+    }
+}
+
+/*
+ * Exercise:      20
+ * Description:   Look up the interface for java.lang.Class in the JDK documentation
+ *                from http://java.sun.com. Write a program that takes the name of a class as a command-line
+ *                argument, then uses the Class methods to dump all the information available for that class.
+ *                Test your program with a standard library class and a class you create.
+ */
+
+interface Interface {
+    void doSomething();
+    void somethingElse(String arg);
+}
+
+class RealObject implements Interface {
+    public void doSomething() { System.out.println("doSomething"); }
+    public void somethingElse(String arg) {
+        System.out.println("somethingElse " + arg);
+    }
+}
+class SimpleProxy implements Interface {
+    private Interface proxied;
+    public SimpleProxy(Interface proxied) {
+        this.proxied = proxied;
+    }
+    public void doSomething() {
+        System.out.println("SimpleProxy doSomething");
+        proxied.doSomething();
+    }
+    public void somethingElse(String arg) {
+        System.out.println("SimpleProxy somethingElse " + arg);
+        proxied.somethingElse(arg);
+    }
+}
+class SimpleProxyDemo {
+    public static void consumer(Interface iface) {
+        iface.doSomething();
+        iface.somethingElse("bonobo");
+    }
+    public static void main(String[] args) {
+        consumer(new RealObject());
+        consumer(new SimpleProxy(new RealObject()));
+    }
+}
+
+/*
+ * Exercise:      25
+ * Description:   Create a class containing private, protected and package-access
+ *                methods. Write code to access these methods from outside of the class’s package.
+ */
+
+public class TypeInformation {
+    int i = 20;
+    protected String s = "If you are out from the package, only for subclasses!!!";
+    private String s2 = "Am I private?";
+
+    void firstMethod(){
+        System.out.println("Default access");
+    }
+
+    protected void secondMethod(){
+        System.out.println("protected access");
+    }
+
+    private void thirdMethod(){
+        System.out.println("private access");
+    }
+
+    @Override
+    public String toString() {
+        return "TypeInformation{" +
+                "i=" + i +
+                ", s='" + s + '\'' +
+                ", s2='" + s2 + '\'' +
+                '}';
+    }
+}
+
+// see the actions connected with this exercise in com.training.typeInformation.test package.

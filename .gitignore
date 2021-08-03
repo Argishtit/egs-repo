@@ -1,5 +1,4 @@
-git.iml
+*.iml
 path-name.txt
 out/
 .idea/
-.git/

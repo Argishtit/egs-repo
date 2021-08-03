@@ -1,10 +1,10 @@
 package com.training.innerClasses.bassementForClasses;
-import com.training.innerClasses.OuterDisplay;
+import com.training.innerClasses.Exercise6;
 import com.training.innerClasses.basementForInterfaces.Display;
 
-public class SeparateThird extends OuterDisplay {
+public class SeparateThird extends Exercise6 {
     public Display method(){
-        OuterDisplay outerDisplay = new OuterDisplay();
+        Exercise6 outerDisplay = new Exercise6();
         Display display = outerDisplay.inner();
         return display;
     }

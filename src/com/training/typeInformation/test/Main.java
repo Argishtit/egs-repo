@@ -1,8 +1,7 @@
 package com.training.typeInformation.test;
 
 
-import com.training.typeInformation.TypeInformation;
-
+import com.training.typeInformation.Exercise25;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -14,7 +13,7 @@ import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        TypeInformation ti = new TypeInformation();
+        Exercise25 ti = new Exercise25();
         Field notPrivate = ti.getClass().getDeclaredField("i");
         notPrivate.setAccessible(true);
         System.out.println(notPrivate.getInt(ti));
@@ -32,11 +31,11 @@ public class Main {
         notPrivate.set(ti, "No you aren't");
         System.out.println(ti);
 
-        Method notPrivateAnymore = TypeInformation.class.getDeclaredMethod("firstMethod");
+        Method notPrivateAnymore = Exercise25.class.getDeclaredMethod("firstMethod");
         notPrivateAnymore.setAccessible(true);
         notPrivateAnymore.invoke(ti);
 
-        notPrivateAnymore = TypeInformation.class.getDeclaredMethod("secondMethod");
+        notPrivateAnymore = Exercise25.class.getDeclaredMethod("secondMethod");
         notPrivateAnymore.setAccessible(true);
         notPrivateAnymore.invoke(ti);
 

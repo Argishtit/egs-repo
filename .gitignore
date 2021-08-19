@@ -1,4 +1,4 @@
-*.iml
 path-name.txt
 out/
 .idea/
+*.iml

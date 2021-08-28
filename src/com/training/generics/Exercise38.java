@@ -71,12 +71,9 @@ class WhippedCream extends Decorator {
 public class Exercise38 {
     public static void main(String[] args) {
         SteamedMilk sm = new SteamedMilk(new BasicCoffee());
-        SteamedMilk sm2 = new SteamedMilk(
-                new Foam(new BasicCoffee()));
+        SteamedMilk sm2 = new SteamedMilk(new Foam(new BasicCoffee()));
         Chocolate c = new Chocolate(new BasicCoffee());
-        WhippedCream wc = new WhippedCream(new Caramel(
-                new Chocolate(new Foam(new SteamedMilk(
-                        new BasicCoffee())))));
+        WhippedCream wc = new WhippedCream(new Caramel(new Chocolate(new Foam(new SteamedMilk(new BasicCoffee())))));
     }
 }
 
